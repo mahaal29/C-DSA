@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+  int n , i; 
+  scanf("%d",&n);
+  int arr[n];
+  for( i=0 ; i<n ; i++){
+    scanf("%d",&arr[i]);
+  }
+  int target ;
+  scanf("%d",&target);
+  
+  for( i=0 ; i<n ; i++){
+    if(target==arr[i]){
+      printf("Found");
+      return 0;
+    }
+  }
+  printf("Not Found");
+    return 0;
+}

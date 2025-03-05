@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100  
+
+int stack[MAX_SIZE]; 
+int top = -1;        
+
+
+void push(int value) {
+    if (top < MAX_SIZE - 1) {  
+        stack[++top] = value;
+    }
+}
+
+void pop() {
+    if (top >= 0) {  
+        top--;
+    }
+}
+
+
+void printStack() {
+    for (int i = top; i >= 0; i--) {
+        printf("%d", stack[i]);
+        if (i > 0) {
+            printf(" "); 
+        }
+    }
+    printf("\n"); 
+}
+
+int main() {
+    int n, i, value;
+
+ 
+    scanf("%d", &n);
+
+    
+    for (i = 0; i < n; i++) {
+        scanf("%d", &value);
+        push(value);
+    }
+
+
+    pop();
+    pop(); 
+
+
+    for (i = 0; i < 4; i++) {
+        scanf("%d", &value);
+        push(value);
+    }
+
+   
+    pop(); 
+
+   
+    for (i = 0; i < 2; i++) {
+        scanf("%d", &value);
+        push(value);
+    }
+
+
+    pop();
+    pop(); /
+    pop(); 
+
+
+    if (top >= 0) { 
+        printStack();
+    } else {
+        printf("\n"); 
+    }
+
+    return 0;
+}
