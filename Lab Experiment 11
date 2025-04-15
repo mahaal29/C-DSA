@@ -1,0 +1,105 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void enqueue(int value){
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    if(temp == NULL)
+        printf("Queue Overflow!!!!\n");
+    else{
+        temp->data = value;
+        temp->next = NULL;
+        if(rear == NULL){
+            front = rear = temp;
+        }
+        else{
+            rear->next = temp;
+            rear = temp;
+        }
+        printf("Enqueue %d into the queue\n", value);
+    }
+}
+
+int dequeue(){
+    if(front == NULL){
+        printf("Queue UnderFlow !!!\n");
+        return -1;
+    }
+    else{
+        struct Node* temp = front;
+        front = front->next;
+        int val = temp->data;
+        free(temp);
+        if(front == NULL) rear = NULL;  
+        return val;
+    }
+}
+
+int peek(){
+    if(front == NULL){
+        printf("Queue UnderFlow !!!\n");
+        return -1;
+    }
+    else{
+        return front->data;
+    }
+}
+
+int show(){
+    if(front == NULL){
+        printf("Queue is empty !!!\n");
+        return -1;
+    }
+    else{
+        printf("Queue Elements are : \n");
+        struct Node* temp = front;
+        while(temp != NULL){
+            printf("%d\n", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    while(1){
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Peek\n");
+        printf("4. Show\n");
+        printf("5. Exit\n");
+        int choice, val, res;
+        printf("Enter Choice :");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
+                printf("Enter Element :");
+                scanf("%d", &val);
+                enqueue(val);
+                break;
+            case 2:
+                res = dequeue();
+                if(res != -1)
+                    printf("%d dequeued from the queue\n", res);
+                break;
+            case 3:
+                res = peek();
+                if(res != -1)
+                    printf("Queue front element is %d\n", res);
+                break;
+            case 4:
+                show();
+                break;
+            case 5:
+                exit(0);
+                break;
+        }
+    }
+}
